@@ -13,4 +13,4 @@ import { WordsModule } from './descriptionwords/descriptionWords.module';
   controllers: [AppController, SearchController],
   providers: [AppService, FilterWordsService],
 })
-export class AppModule {}
+export class AppModule { }

@@ -7,4 +7,4 @@ import { FilterWordsService } from './filterwords.service';
   providers: [FilterWordsService],
   exports: [FilterWordsService],
 })
-export class FilterwordsModule {}
+export class FilterwordsModule { }

@@ -3,8 +3,7 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 export type WordsDocument = Word & Document;
 
 @Schema()
-export class Word{
-    
+export class Word {
     @Prop()
     wordcontent: string;
 

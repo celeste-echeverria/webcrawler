@@ -8,14 +8,14 @@ import { FetchedURL, FetchedURLsSchema } from './schemas/searchs.schema';
 import { SearchsRepository } from './searchs.repository';
 
 @Module({
-    imports: [ 
-        MongooseModule.forFeature([{name: FetchedURL.name, schema: FetchedURLsSchema}]),
-        FilterwordsModule, 
-        MongooseModule.forRoot('mongodb://localhost/webscraper'), 
+    imports: [
+        MongooseModule.forFeature([{ name: FetchedURL.name, schema: FetchedURLsSchema }]),
+        MongooseModule.forRoot('mongodb://localhost/webscraper'),
+        FilterwordsModule,
         WordsModule,
     ],
     controllers: [SearchController],
     providers: [SearchService, SearchsRepository],
     exports: [SearchService],
 })
-export class SearchModule {}
+export class SearchModule { }

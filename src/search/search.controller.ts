@@ -1,29 +1,23 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Query } from '@nestjs/common';
 import { SearchService } from './search.service';
-import { SearchDto } from './dto/search.dto';
 import { WordsService } from 'src/descriptionwords/descriptionWords.service';
 
-@Controller('search')
-export class SearchController{
+@Controller()
+export class SearchController {
     constructor(
-        private readonly searchService: SearchService, 
+        private readonly searchService: SearchService,
         private readonly wordsService: WordsService,
-    ){};
-        
+    ) { };
+
     @Post('')
-    async scrapeWebPage(@Body() data: SearchDto){
-
-        this.searchService.getData(data.url);
-
+    async scrapeWebPage(@Query("PARAM") data: string) {
+        this.searchService.getData(data);
     }
 
     @Get('cloud')
-    async generateWordCloud(){
-        
+    async generateWordCloud() {
         const words = await this.wordsService.getWords()
-        console.log(words);
         return words;
-        
     }
-    
+
 }
