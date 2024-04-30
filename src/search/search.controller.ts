@@ -1,31 +1,29 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { SearchService } from './search.service';
-import { SearchDto } from './search.dto';
-import { FilterWordsService } from 'src/filterwords/filterwords.service';
+import { SearchDto } from './dto/search.dto';
+import { WordsService } from 'src/descriptionwords/descriptionWords.service';
 
 @Controller('search')
-export class SearchController {
+export class SearchController{
     constructor(
         private readonly searchService: SearchService, 
-        private readonly filterWordsService: FilterWordsService,
+        private readonly wordsService: WordsService,
     ){};
-    
-    
-    /*@Post('')
+        
+    @Post('')
     async scrapeWebPage(@Body() data: SearchDto){
 
-        console.log('LA URL RECIBIDA EN POST ES:', data.url)
-        const description = await this.searchService.getProductDescriptionFromUrl(data.url);
+        this.searchService.getData(data.url);
+
+    }
+
+    @Get('cloud')
+    async generateWordCloud(){
         
-        const filtereddata = await this.filterWordsService.getWordsFromDescription(description);
-        console.log(filtereddata);
-
-        return filtereddata;
-
-    }*/
-
-    @Get('')
-    async generateWordCloud(@Body() data: SearchDto){
+        const words = await this.wordsService.getWords()
+        console.log(words);
+        return words;
         
     }
+    
 }
